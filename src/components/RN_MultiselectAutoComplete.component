@@ -1,0 +1,18 @@
+<apex:component controller="RN_MultiselectAutoCompleteCtrl">
+    <apex:attribute name="AvailableOptions" description="Options list for left listbox." type="SelectOption[]" required="true"  assignTo="{!leftOptions}"/>
+    <apex:attribute name="SelectedOptions" description="Options list for right listbox." type="SelectOption[]" required="true"  assignTo="{!rightOptions}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.multiSelectAutoComplete, 'js/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.multiSelectAutoComplete, 'js/jquery.tokeninput.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.multiSelectAutoComplete, 'css/token-input-facebook.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.multiSelectAutoComplete, 'css/token-input-listStyle.css')}" />
+     <script>
+            $(document).ready(function() {
+                $("#myAutocomplete").tokenInput({!MultiselectOptions},{preventDuplicates: true});
+            });
+    </script>
+    <apex:inputHidden value="{!strSelectedOptions}" id="hiddenInputId" />
+    <input type="text" id="myAutocomplete" style="width:100px;" onchange="$('[id$=hiddenInputId]').val($('#myAutocomplete').val());AF();"/>
+    <apex:actionFunction name="AF" action="{!assignToSelectedOption}" rerender="DummyIdForRerender"/>
+    
+</apex:component>

@@ -1,0 +1,6 @@
+<apex:page controller="MultiselectAutocomplete">
+    <apex:form id="frm"> 
+        <c:RN_MultiselectAutoComplete AvailableOptions="{!lstAvailableOptions}" SelectedOptions="{!lstSelectedOptions}" />
+        <apex:commandButton id="cmdbutton" rerender="frm" value="Save" action="{!checkOptions}"/>
+    </apex:form>
+</apex:page>
